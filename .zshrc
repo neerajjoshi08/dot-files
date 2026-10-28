@@ -1,7 +1,3 @@
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-bindkey -e
 autoload -Uz compinit
 compinit
 
@@ -11,21 +7,17 @@ setopt AUTO_LIST
 setopt NO_AUTO_MENU
 setopt NO_MENU_COMPLETE
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' formats ' (%b)'
-precmd() {
-  vcs_info
-}
-setopt PROMPT_SUBST
-setopt HIST_IGNORE_SPACE
-zstyle ':completion:*:*:git:*' tag-order 'main-porcelain-commands aliases'
+# Local binaries
+export PATH=$PATH:$HOME/.local/bin/
 
-PROMPT='%F{190}%n%f@%F{208}%m%f %F{117}%~%f%F{10}${vcs_info_msg_0_}%f %# '
+# Android SDK paths
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/build-tools/36.0.0
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
 
-export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-export LC_ALL=en_US.UTF-8
-export JAVA_HOME=$(/usr/libexec/java_home -v 21)
-
-alias ls='ls -G'
-alias ll='ls -lG'
+# Node & npm paths
+export PATH=$PATH:$HOME/.nvm/versions/node/v26.12.1/bin/
